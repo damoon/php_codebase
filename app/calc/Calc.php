@@ -39,6 +39,5 @@ class Calc {
     }
 
     echo "$r\n";
-    return 0;
   }
 }
