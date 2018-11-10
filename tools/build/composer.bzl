@@ -1,13 +1,15 @@
 # Composer related build rules.
 
 def _composer_repository_impl(repository_ctx):
-  repository_ctx.execute(
+  result = repository_ctx.execute(
       [repository_ctx.attr.composer_bin,
        'require',
        '--prefer-dist',
        repository_ctx.attr.package],
       quiet=False
   )
+  if result.return_code:
+    fail("failed to fetch %s: %s" % (repository_ctx.attr.package, result.stderr))
   repository_ctx.template(
     'composer_lib.bzl',
     Label("//tools/build/template:composer_lib.bzl.tpl"),
