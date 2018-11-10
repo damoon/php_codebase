@@ -31,6 +31,6 @@ composer_repository = repository_rule(
   attrs={
     "package": attr.string(mandatory=True),
     "digest": attr.string(mandatory=True),
-    "composer_bin": attr.string(default="/usr/bin/composer")
+    "composer_bin": attr.string(default="composer")
   }
 )
